@@ -1,5 +1,4 @@
 import pygame as pg
-import time
 import random as r
 import sorts
 import menu
@@ -28,7 +27,12 @@ def main():
     pg.display.set_caption("Sorting Visualizer")
     
     
-    array = [r.randint(0, 100) for i in range(100)]
+    algorithm = {
+        "Selection sort": sorts.selection
+     
+    }
+    
+    array = [r.randint(10, height) for i in range(100)]
     
     background = (23, 26, 33)
     
@@ -47,7 +51,8 @@ def main():
             
             if event.type == pg.MOUSEBUTTONDOWN:
                 choice = main_menu.clicked()
-                print(choice)
+                if choice is not None:
+                    algorithm.get(choice)(array, window)
 
         #Updates
         main_menu.update(mouse_x, mouse_y)
@@ -63,7 +68,7 @@ def main():
             
         
         
-        
+    pg.quit()
 
 
 
