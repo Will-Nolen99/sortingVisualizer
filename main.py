@@ -22,17 +22,19 @@ Brink Pink              E85D75            (232, 93, 117)
 def main():
     
     
-    (width, height) = (800, 500)
+    (width, height) = (1500, 500)
     window = pg.display.set_mode((width, height))
     pg.display.set_caption("Sorting Visualizer")
     
     
     algorithm = {
-        "Selection sort": sorts.selection
+        "Selection sort": sorts.selection,
+        "Bubble sort": sorts.bubble,
+        "Quick sort": sorts.quick
      
     }
     
-    array = [r.randint(10, height) for i in range(100)]
+    
     
     background = (23, 26, 33)
     
@@ -52,6 +54,7 @@ def main():
             if event.type == pg.MOUSEBUTTONDOWN:
                 choice = main_menu.clicked()
                 if choice is not None:
+                    array = [r.randint(10, height) for i in range(main_menu.elements)]
                     algorithm.get(choice)(array, window)
 
         #Updates
@@ -72,6 +75,9 @@ def main():
 
 
 
+  
+
+
 
 
 def create_menu(win):
@@ -79,8 +85,8 @@ def create_menu(win):
     bubble = menu.Button("Bubble sort", (25, 25), (150, 50), win)
     quick = menu.Button("Quick sort", (25, 100), (150, 50), win)
     selection = menu.Button("Selection sort", (25, 175), (150, 50), win)
-    up = menu.Button("+10", (525, 75), (50, 50), win)
-    down = menu.Button("-10", (600, 75), (50, 50), win)
+    up = menu.Button("-10", (525, 75), (50, 50), win)
+    down = menu.Button("+10", (600, 75), (50, 50), win)
     
     
     m.add_button(bubble)
