@@ -30,7 +30,8 @@ def main():
     algorithm = {
         "Selection sort": sorts.selection,
         "Bubble sort": sorts.bubble,
-        "Quick sort": sorts.quick
+        "Quick sort": sorts.quick,
+        "Shell sort": sorts.shell
      
     }
     
@@ -85,10 +86,12 @@ def create_menu(win):
     bubble = menu.Button("Bubble sort", (25, 25), (150, 50), win)
     quick = menu.Button("Quick sort", (25, 100), (150, 50), win)
     selection = menu.Button("Selection sort", (25, 175), (150, 50), win)
+    shell = menu.Button("Shell sort", (25, 250), (150, 50), win)
+    
     up = menu.Button("-10", (525, 75), (50, 50), win)
     down = menu.Button("+10", (600, 75), (50, 50), win)
     
-    
+    m.add_button(shell)
     m.add_button(bubble)
     m.add_button(quick)
     m.add_button(selection)
