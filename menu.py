@@ -4,7 +4,7 @@ import pygame as pg
 class Menu:
     
     def __init__(self, win):
-        self.elements = 100
+        self.elements = 1500
         self.buttons = []
         self.win = win
         self.font = pg.font.SysFont('arial', 25)

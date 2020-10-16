@@ -2,6 +2,7 @@ import pygame as pg
 import random as r
 import sorts
 import menu
+from noise import snoise2
 
 '''
 
@@ -55,7 +56,8 @@ def main():
             if event.type == pg.MOUSEBUTTONDOWN:
                 choice = main_menu.clicked()
                 if choice is not None:
-                    array = [r.randint(10, height) for i in range(main_menu.elements)]
+                    array = [ 500 * abs(snoise2(.01 * i, 0)) for i in range(main_menu.elements)]
+                    print(array)
                     algorithm.get(choice)(array, window)
 
         #Updates

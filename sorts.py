@@ -10,7 +10,6 @@ def selection(array, win):
         
         
     for i in range(len(array)):
-        array[i].status = "current"
             
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -19,7 +18,7 @@ def selection(array, win):
         minimum = i
         for j in range(i + 1, len(array)):
             #time.sleep(.5)
-            array[j].status = "current"
+
             swapped = False
                 
             comparisons += 1
@@ -29,29 +28,14 @@ def selection(array, win):
                 swapped = True
                 access += 2
                     
-                if minimum != i:
-                    array[minimum].status = "normal"
                         
                 minimum = j
-                array[minimum].status = "selected"
-                    
-
-            
-            draw(array, win)
-                
-            if array[j].status == "current":
-                array[j].status = "normal"   
-            
-        array[i].status = "normal"
-
         array[i], array[minimum] = array[minimum], array[i]
-
             
         array[i].status = "sorted"
-
-    for element in array:
-        element.status = "sorted"
         draw(array, win)
+
+
     pause()        
             
 
@@ -79,23 +63,16 @@ def bubble(array, win):
         
         # Last i elements are already in place 
         for j in range(0, length-i-1): 
-            array[j].status = "current"
   
             # traverse the array from 0 to n-i-1 
             # Swap if the element found is greater 
             # than the next element 
             if array[j].val > array[j+1].val : 
                 array[j], array[j+1] = array[j+1], array[j] 
-                array[j].status = "selected"
-
-            draw(array, win)
-            array[j].status = "normal"
-            
+  
         array[length - i - 1].status = "sorted"
-
-    for element in array:
-        element.status = "sorted"
         draw(array, win)
+    
     pause()  
         
 def quick(array, win):
@@ -104,7 +81,7 @@ def quick(array, win):
     quickSort(array, 0, length-1, win)
     for element in array:
         element.status = "sorted"
-        draw(array, win)
+    draw(array, win)
     pause()
     
     
@@ -124,21 +101,15 @@ def partition(array,low,high, win):
   
     for j in range(low , high): 
         #array[i].status = "normal"
-        # If current element is smaller than the pivot 
-        array[i].status = "selected"    
-    
+        # If current element is smaller than the pivot    
         if   array[j].val < pivot: 
           
             # increment index of smaller element 
             i = i+1 
             array[i].val,array[j].val = array[j].val,array[i].val 
 
-            
-        
-        draw(array, win)
-        
-  
-    
+    draw(array, win)
+
     array[i+1].val,array[high].val = array[high].val,array[i+1].val 
     return ( i+1 ) 
   
@@ -154,22 +125,19 @@ def quickSort(array,low,high, win):
         # pi is partitioning index, arr[p] is now 
         # at right place 
         
-        array[low].status = "current"
-        array[high].status = "current"
         pi = partition(array,low,high, win) 
-        array[pi].status = "sorted"
 
-        
-  
+
         # Separately sort elements before 
         # partition and after partition 
         quickSort(array, low, pi-1, win) 
         
-        for num in range(low, pi - 1): 
+        for num in range(low, pi): 
             array[num].status = "sorted"
-        
         quickSort(array, pi+1, high, win) 
-        array[pi].status = "sorted"
+        for num in range(pi, high): 
+            array[num].status = "sorted"
+
         
         
         
@@ -187,7 +155,9 @@ def shell(array, win):
     while gap > 0: 
   
         for i in range(gap,n): 
-  
+            
+            if gap == 1:
+                array[i].status = "sorted"
             # add a[i] to the elements that have been gap sorted 
             # save a[i] in temp and make a hole at position i 
             temp = array[i].val 
@@ -198,13 +168,23 @@ def shell(array, win):
             while  j >= gap and array[j-gap].val >temp: 
                 array[j].val = array[j-gap].val 
                 j -= gap 
+            
+            # used to speed up visual
+            if i % 5 == 0:
+                draw(array, win)
+
+            
   
             # put temp (the original a[i]) in its correct location 
             array[j].val = temp 
-            draw(array, win)
-            
         gap = gap // 2
+        
+        
+
     
+    for element in array:
+        element.status = "sorted"
+    draw(array, win)
     pause()
         
           
@@ -240,9 +220,11 @@ def draw(array, win):
     elements = len(array)
     element_width = w // elements
     
+    
     for i, num in enumerate(array):
         pg.draw.rect(win, colors.get(num.status),  (i * element_width, h - num.val, element_width, num.val))
-        pg.draw.rect(win, (97, 112, 115),  (i * element_width, h - num.val, element_width, num.val), 1)
+        if len(array) <= 500:
+            pg.draw.rect(win, (97, 112, 115),  (i * element_width, h - num.val, element_width, num.val), 1)
     
     
 
