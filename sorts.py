@@ -1,5 +1,6 @@
 import time
 import pygame as pg
+from draw import draw_sort
 
 def selection(array, win):
     
@@ -33,7 +34,7 @@ def selection(array, win):
         array[i], array[minimum] = array[minimum], array[i]
             
         array[i].status = "sorted"
-        draw(array, win)
+        draw_sort(array, win)
     return array
 
      
@@ -70,7 +71,7 @@ def bubble(array, win):
                 array[j], array[j+1] = array[j+1], array[j] 
   
         array[length - i - 1].status = "sorted"
-        draw(array, win)
+        draw_sort(array, win)
     return array
      
         
@@ -85,7 +86,7 @@ def quick(array, win):
     quickSort(array, 0, length-1, win)
     for element in array:
         element.status = "sorted"
-    draw(array, win)
+    draw_sort(array, win)
     return array
     
     
@@ -112,7 +113,7 @@ def partition(array,low,high, win):
             i = i+1 
             array[i].val,array[j].val = array[j].val,array[i].val 
 
-    draw(array, win)
+    draw_sort(array, win)
 
     array[i+1].val,array[high].val = array[high].val,array[i+1].val 
     return ( i+1 ) 
@@ -176,7 +177,7 @@ def shell(array, win):
             
             # used to speed up visual
             if i % 5 == 0:
-                draw(array, win)
+                draw_sort(array, win)
 
             
   
@@ -189,7 +190,7 @@ def shell(array, win):
     
     for element in array:
         element.status = "sorted"
-    draw(array, win)
+    draw_sort(array, win)
     return array
 
         
@@ -237,7 +238,7 @@ def gravity(array, win):
             size += 1
              
         
-        draw(down, win, up)
+        draw_sort(down, win, up)
         
     return up
 
@@ -265,12 +266,12 @@ def insertion(array, win):
                 j -= 1
         array[j+1].val = key 
 
-        draw(array, win)
+        draw_sort(array, win)
 
     for num in array:
         num.status = "sorted"
 
-    draw(array, win)
+    draw_sort(array, win)
 
     return array
     
@@ -316,7 +317,7 @@ def countingSort(array, exp1, win):
         
         
         if i % 5 == 0:
-            draw(array, win)
+            draw_sort(array, win)
  
 # Method to do Radix Sort
 def radix(array, win):
@@ -399,7 +400,7 @@ def pancake(array, win):
             flip(array, curr_size-1) 
         curr_size -= 1    
         
-        draw(array, win)
+        draw_sort(array, win)
     return array
 
 
@@ -414,40 +415,7 @@ def pause():
 
     
     
-def draw(array, win, array2=None):
-    
 
-    win.fill((23, 26, 33))
-
-    colors = {
-            
-        "normal":(195, 201, 233),
-        "sorted":(68, 255, 209), 
-        "current":(232, 93, 117),
-        "selected":(64, 249, 155)
-            
-    }
-        
-    
-    w, h = pg.display.get_surface().get_size()
-    elements = len(array)
-    element_width = w / elements
-    
-    
-    if array2 is not None:
-        for i, num in enumerate(array2):
-            pg.draw.rect(win, colors.get(num.status),  (i * element_width, h - num.val, element_width, num.val))
-            if len(array) <= 500:
-                pg.draw.rect(win, (97, 112, 115),  (i * element_width, h - num.val, element_width, num.val), 1)
-    
-    
-    for i, num in enumerate(array):
-        pg.draw.rect(win, colors.get(num.status),  (i * element_width, h - num.val, element_width, num.val))
-        if len(array) <= 500:
-            pg.draw.rect(win, (97, 112, 115),  (i * element_width, h - num.val, element_width, num.val), 1)
-            
-
-    pg.display.update()
     
     
     
