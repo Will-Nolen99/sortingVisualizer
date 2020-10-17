@@ -2,7 +2,7 @@ import pygame as pg
 
 
 
-def drawMenu(array, win, menu, array2=None):
+def draw_menu(array, win, menu, array2=None):
     
     
     colors = {

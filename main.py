@@ -1,10 +1,8 @@
 import pygame as pg
-import random as r
 import sorts
 import menu
-from noise import snoise2
-from sorts import Element
-import draw
+from array import make_array
+from draw import draw_menu
 
 '''
 
@@ -23,11 +21,6 @@ Brink Pink              E85D75            (232, 93, 117)
 
 
 def main():
-    
-    
-    (width, height) = (1500, 1000)
-    window = pg.display.set_mode((width, height))
-    pg.display.set_caption("Sorting Visualizer")
     
     
     algorithm = {
@@ -67,7 +60,7 @@ def main():
         
         #Draw
         
-        draw.drawMenu(array, window, main_menu)
+        draw_menu(array, window, main_menu)
         pg.display.update()
 
             
@@ -78,14 +71,10 @@ def main():
 
 
 
-def make_array(length):
-    t = r.randint(0, 10000)
-    array = [ 500 * abs(snoise2(.005 * i, t)) for i in range(length)]
-    array = list(map(lambda x: Element(x), array))
-    
-    return array
-
 
 if __name__ == '__main__':
     pg.init()
+    (width, height) = (1500, 1000)
+    window = pg.display.set_mode((width, height))
+    pg.display.set_caption("Sorting Visualizer")
     main()

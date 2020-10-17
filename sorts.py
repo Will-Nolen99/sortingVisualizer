@@ -37,15 +37,7 @@ def selection(array, win):
         draw_sort(array, win)
     return array
 
-     
-            
-
-            
-            
-            
-            
-            
-            
+         
             
                     
 def bubble(array, win):
@@ -193,9 +185,7 @@ def shell(array, win):
     draw_sort(array, win)
     return array
 
-        
-          
-    
+
     
 
 def gravity(array, win):
@@ -241,9 +231,6 @@ def gravity(array, win):
         draw_sort(down, win, up)
         
     return up
-
-        
-    
 
 
 
@@ -342,9 +329,6 @@ def radix(array, win):
     return array
     
     
-    
-    
-    
 # Reverses arr[0..i] */ 
 def flip(array, i): 
     start = 0
@@ -413,12 +397,6 @@ def pause():
                 if event.type == pg.MOUSEBUTTONDOWN:
                     return
 
-    
-    
-
-    
-    
-    
 
 def isSorted(array):
     for i, num in enumerate(array):
@@ -428,11 +406,6 @@ def isSorted(array):
     
     
 
-
-class Element:
-    def __init__(self, val):
-        self.val = val
-        self.status = "normal"
         
 
         
