@@ -26,6 +26,7 @@ def main():
     while running:
         
         mouse_x, mouse_y = pg.mouse.get_pos()
+        
         # Events
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -33,11 +34,15 @@ def main():
             
             if event.type == pg.MOUSEBUTTONDOWN:
                 choice = main_menu.clicked()
+                
                 if choice not in algorithm and choice is not None:
                     array = make_array(main_menu.elements)
+                    
                 elif choice in algorithm:
+                    
                     for num in array:
                         num.status = "normal"
+                        
                     array = algorithm.get(choice)(array, window)
 
         #Updates
@@ -45,7 +50,6 @@ def main():
         
         #Draw
         draw_menu(array, window, main_menu)
-
 
     pg.quit()
 

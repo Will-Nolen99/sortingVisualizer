@@ -3,12 +3,6 @@ from draw import draw_sort
 from element import Element
 
 def selection(array, win):
-    
-    sum_time = 0.0
-    comparisons = 0
-    access = 0
-
-        
         
     for i in range(len(array)):
             
@@ -41,8 +35,6 @@ def selection(array, win):
             
                     
 def bubble(array, win):
-    
-
                 
     length = len(array) 
     
@@ -51,8 +43,7 @@ def bubble(array, win):
         for event in pg.event.get():
                 if event.type == pg.QUIT:
                     pg.quit()
-        
-        
+         
         # Last i elements are already in place 
         for j in range(0, length-i-1): 
   
@@ -82,14 +73,6 @@ def quick(array, win):
     return array
     
     
-    
-# Python program for implementation of Quicksort Sort 
-  
-# This function takes last element as pivot, places 
-# the pivot element at its correct position in sorted 
-# array, and places all smaller (smaller than pivot) 
-# to left of pivot and all greater elements to right 
-# of pivot 
 def partition(array,low,high, win): 
     i = ( low-1 )         # index of smaller element 
     pivot = array[high].val     # pivot 
@@ -110,12 +93,7 @@ def partition(array,low,high, win):
     array[i+1].val,array[high].val = array[high].val,array[i+1].val 
     return ( i+1 ) 
   
-# The main function that implements QuickSort 
-# arr[] --> Array to be sorted, 
-# low  --> Starting index, 
-# high  --> Ending index 
-  
-# Function to do Quick sort 
+
 def quickSort(array,low,high, win): 
     
     
@@ -146,10 +124,6 @@ def shell(array, win):
     n = len(array) 
     gap = n//2
   
-    # Do a gapped insertion sort for this gap size. 
-    # The first gap elements a[0..gap-1] are already in gapped  
-    # order keep adding one more element until the entire array 
-    # is gap sorted 
     while gap > 0: 
   
         for i in range(gap,n): 
@@ -176,9 +150,6 @@ def shell(array, win):
             # put temp (the original a[i]) in its correct location 
             array[j].val = temp 
         gap = gap // 2
-        
-        
-
     
     for element in array:
         element.status = "sorted"
@@ -186,11 +157,7 @@ def shell(array, win):
     return array
 
 
-    
-
 def gravity(array, win):
-
-
 
     up = [Element(0) for _ in array]
     down = array
@@ -233,7 +200,6 @@ def gravity(array, win):
     return up
 
 
-
 def insertion(array, win): 
   
 
@@ -262,9 +228,7 @@ def insertion(array, win):
 
     return array
     
-    
-    
-    
+       
 def countingSort(array, exp1, win):
  
     n = len(array)
@@ -356,45 +320,20 @@ def pancake(array, win):
       
     n = len(array)  
       
-    # Start from the complete 
-    # array and one by one 
-    # reduce current size 
-    # by one 
     curr_size = n 
     while curr_size > 1: 
-        # Find index of the maximum 
-        # element in  
-        # arr[0..curr_size-1] 
+
         mi = findMax(array, curr_size) 
   
-        # Move the maximum element 
-        # to end of current array 
-        # if it's not already at  
-        # the end 
         if mi != curr_size-1: 
-            # To move at the end,  
-            # first move maximum  
-            # number to beginning  
+
             flip(array, mi) 
   
-            # Now move the maximum  
-            # number to end by 
-            # reversing current array 
             flip(array, curr_size-1) 
         curr_size -= 1    
         
         draw_sort(array, win)
     return array
-
-
-    
-def pause():
-    while True:
-        for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    pg.quit()
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    return
 
 
 def isSorted(array):
@@ -403,10 +342,3 @@ def isSorted(array):
             return False
     return True
     
-    
-
-        
-
-        
-        
-        
