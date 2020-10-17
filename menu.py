@@ -88,7 +88,7 @@ class Menu:
                     self.elements -= 10
                 return "modification"     
             elif click == "+100":
-                if self.elements < self.w - 100:
+                if self.elements <= self.w - 100:
                     self.elements += 100
                 return "modification"
             elif click == "-100":

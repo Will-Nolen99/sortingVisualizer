@@ -1,4 +1,5 @@
 from draw import draw_sort
+from element import Element
 
 def gravity(array, win):
 
@@ -38,6 +39,8 @@ def gravity(array, win):
             size += 1
              
         
+        
+        print(size, length)
         draw_sort(down, win, up)
         
     return up
