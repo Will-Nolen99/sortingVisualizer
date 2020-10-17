@@ -12,18 +12,8 @@ def selection(array, win):
             
         minimum = i
         for j in range(i + 1, len(array)):
-            #time.sleep(.5)
-
-            swapped = False
                 
-            comparisons += 1
-            first = time.time()
             if array[j].val <= array[minimum].val:
-
-                swapped = True
-                access += 2
-                    
-                        
                 minimum = j
         array[i], array[minimum] = array[minimum], array[i]
             
