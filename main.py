@@ -1,7 +1,7 @@
 import pygame as pg
 import sorts
 import menu
-from array import make_array
+from element import make_array
 from draw import draw_menu
 
 '''
@@ -17,7 +17,6 @@ Medium Spring Green     40F99B            (64, 249, 155)
 Brink Pink              E85D75            (232, 93, 117)
 
 '''
-
 
 
 def main():
