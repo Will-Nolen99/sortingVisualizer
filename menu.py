@@ -9,11 +9,12 @@ class Menu:
         self.win = win
         self.font = pg.font.SysFont('arial', 25)
         self.textsurface = self.font.render(f"Array Elements: {self.elements}", False, (68, 255, 209))
+        self.w, self.h = pg.display.get_surface().get_size()
         
     def add_button(self, button):
         self.buttons.append(button)
         
-    def draw(self):
+    def draw_elements(self):
         self.win.blit(self.textsurface, (500, 25))
         for button in self.buttons:
             button.draw()
@@ -29,10 +30,21 @@ class Menu:
         for button in self.buttons:
             click = button.clicked()
             if click == "+10":
-                self.elements += 10
+                if self.elements < self.w:
+                    self.elements += 10
+                return "modification"
             elif click == "-10":
                 if self.elements > 10:
                     self.elements -= 10
+                return "modification"     
+            elif click == "+100":
+                if self.elements < self.w:
+                    self.elements += 100
+                return "modification"
+            elif click == "-100":
+                if self.elements > 100:
+                    self.elements -= 100
+                return "modification "       
             elif click:
                 return click
             

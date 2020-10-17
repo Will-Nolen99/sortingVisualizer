@@ -6,7 +6,7 @@ def selection(array, win):
     sum_time = 0.0
     comparisons = 0
     access = 0
-    array = list(map(lambda x: Element(x), array)) 
+
         
         
     for i in range(len(array)):
@@ -34,9 +34,9 @@ def selection(array, win):
             
         array[i].status = "sorted"
         draw(array, win)
+    return array
 
-
-    pause()        
+     
             
 
             
@@ -50,7 +50,6 @@ def selection(array, win):
 def bubble(array, win):
     
 
-    array = list(map(lambda x: Element(x), array))
                 
     length = len(array) 
     
@@ -72,17 +71,20 @@ def bubble(array, win):
   
         array[length - i - 1].status = "sorted"
         draw(array, win)
-    
-    pause()  
+    return array
+     
         
 def quick(array, win):
+    
+    if isSorted(array):
+        return array
+    
     length = len(array)
-    array = list(map(lambda x: Element(x), array))
     quickSort(array, 0, length-1, win)
     for element in array:
         element.status = "sorted"
     draw(array, win)
-    pause()
+    return array
     
     
     
@@ -120,6 +122,8 @@ def partition(array,low,high, win):
   
 # Function to do Quick sort 
 def quickSort(array,low,high, win): 
+    
+    
     if low < high: 
   
         # pi is partitioning index, arr[p] is now 
@@ -142,7 +146,6 @@ def quickSort(array,low,high, win):
         
         
 def shell(array, win): 
-    array = list(map(lambda x: Element(x), array))
   
     # Start with a big gap, then reduce the gap 
     n = len(array) 
@@ -185,10 +188,219 @@ def shell(array, win):
     for element in array:
         element.status = "sorted"
     draw(array, win)
-    pause()
+    return array
+
         
           
     
+    
+
+def gravity(array, win):
+
+
+
+    up = [Element(0) for _ in array]
+    down = array
+
+    for num in up:
+        num.status = "sorted"
+    
+    start_elements = len(down)
+    count = 0
+    size = 0
+    
+    length = len(down)
+    sorting = True
+    
+    while size < length:
+        
+        count += 1
+        
+        old_len = 0
+        for num in down:
+            if num.val > 0:
+                old_len += 1
+                num.val -= 1
+        
+        new_len = 0
+        for num in down:
+            if num.val > 0:
+                new_len += 1
+        
+        length_diff = old_len - new_len
+        
+        
+        for i in range(length_diff ):
+            up[size].val = count
+            size += 1
+             
+        
+        draw(down, win, up)
+        
+    return up
+
+        
+    
+
+
+
+def insertion(array, win): 
+  
+
+  
+    # Traverse through 1 to len(arr) 
+    for i in range(1, len(array)): 
+  
+        key = array[i].val 
+        
+  
+        # Move elements of arr[0..i-1], that are 
+        # greater than key, to one position ahead 
+        # of their current position 
+        j = i-1
+        while j >=0 and key < array[j].val : 
+                array[j+1].val = array[j].val 
+                j -= 1
+        array[j+1].val = key 
+
+        draw(array, win)
+
+    for num in array:
+        num.status = "sorted"
+
+    draw(array, win)
+
+    return array
+    
+    
+    
+    
+def countingSort(array, exp1, win):
+ 
+    n = len(array)
+ 
+    # The output array elements that will have sorted arr
+    output = [0] * (n)
+ 
+    # initialize count array as 0
+    count = [0] * (10)
+ 
+    # Store count of occurrences in count[]
+    for i in range(0, n):
+        index = (array[i].val / exp1)
+        count[int(index % 10)] += 1
+ 
+    # Change count[i] so that count[i] now contains actual
+    # position of this digit in output array
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+ 
+    # Build the output array
+    i = n - 1
+    while i >= 0:
+        index = (array[i].val / exp1)
+        output[count[int(index % 10)] - 1] = array[i].val
+        count[int(index % 10)] -= 1
+        i -= 1
+        
+ 
+    # Copying the output array to arr[],
+    # so that arr now contains sorted numbers
+    i = 0
+    for i in range(0, len(array)):
+        array[i].val = output[i]
+        if exp1 == 100:
+            array[i].status ="sorted"
+        
+        
+        if i % 5 == 0:
+            draw(array, win)
+ 
+# Method to do Radix Sort
+def radix(array, win):
+ 
+
+    # Find the maximum number to know number of digits
+ 
+    max1 = 0
+    for num in array:
+        if num.val > max1:
+            max1 = num.val
+ 
+    # Do counting sort for every digit. Note that instead
+    # of passing digit number, exp is passed. exp is 10^i
+    # where i is current digit number
+    exp = 1
+    while max1 // exp > 0:
+        countingSort(array, exp, win)
+        exp *= 10
+        time.sleep(.2)
+        
+    return array
+    
+    
+    
+    
+    
+# Reverses arr[0..i] */ 
+def flip(array, i): 
+    start = 0
+    while start < i: 
+        temp = array[start] 
+        array[start] = array[i] 
+        array[i] = temp 
+        start += 1
+        i -= 1
+  
+# Returns index of the maximum 
+# element in arr[0..n-1] */ 
+def findMax(array, n): 
+    mi = 0
+    for i in range(0,n): 
+        if array[i].val > array[mi].val: 
+            mi = i 
+            
+    array[mi].status = "sorted"
+    return mi 
+  
+# The main function that  
+# sorts given array  
+# using flip operations 
+def pancake(array, win): 
+      
+    n = len(array)  
+      
+    # Start from the complete 
+    # array and one by one 
+    # reduce current size 
+    # by one 
+    curr_size = n 
+    while curr_size > 1: 
+        # Find index of the maximum 
+        # element in  
+        # arr[0..curr_size-1] 
+        mi = findMax(array, curr_size) 
+  
+        # Move the maximum element 
+        # to end of current array 
+        # if it's not already at  
+        # the end 
+        if mi != curr_size-1: 
+            # To move at the end,  
+            # first move maximum  
+            # number to beginning  
+            flip(array, mi) 
+  
+            # Now move the maximum  
+            # number to end by 
+            # reversing current array 
+            flip(array, curr_size-1) 
+        curr_size -= 1    
+        
+        draw(array, win)
+    return array
+
+
     
 def pause():
     while True:
@@ -200,12 +412,11 @@ def pause():
 
     
     
-def draw(array, win):
+def draw(array, win, array2=None):
     
-    
+
     win.fill((23, 26, 33))
 
-    
     colors = {
             
         "normal":(195, 201, 233),
@@ -218,20 +429,32 @@ def draw(array, win):
     
     w, h = pg.display.get_surface().get_size()
     elements = len(array)
-    element_width = w // elements
+    element_width = w / elements
+    
+    
+    if array2 is not None:
+        for i, num in enumerate(array2):
+            pg.draw.rect(win, colors.get(num.status),  (i * element_width, h - num.val, element_width, num.val))
+            if len(array) <= 500:
+                pg.draw.rect(win, (97, 112, 115),  (i * element_width, h - num.val, element_width, num.val), 1)
     
     
     for i, num in enumerate(array):
         pg.draw.rect(win, colors.get(num.status),  (i * element_width, h - num.val, element_width, num.val))
         if len(array) <= 500:
             pg.draw.rect(win, (97, 112, 115),  (i * element_width, h - num.val, element_width, num.val), 1)
-    
-    
+            
 
-    
     pg.display.update()
     
     
+    
+
+def isSorted(array):
+    for i, num in enumerate(array):
+        if i + 1 != len(array) and  num.val > array[i + 1].val:
+            return False
+    return True
     
     
 
