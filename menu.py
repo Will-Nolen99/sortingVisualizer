@@ -1,6 +1,56 @@
 import pygame as pg
 
 
+
+
+
+
+def create_menu(win):
+    m = Menu(win)
+    
+    #first columns
+    bubble = Button("Bubble sort", (25, 25), (150, 50), win)
+    quick = Button("Quick sort", (25, 100), (150, 50), win)
+    selection = Button("Selection sort", (25, 175), (150, 50), win)
+    shell = Button("Shell sort", (25, 250), (150, 50), win)
+    
+    
+    #second column
+    gravity = Button("Gravity sort", (200, 175), (150, 50), win)
+    insertion = Button("Insertion sort", (200, 250), (150, 50), win)
+    radix = Button("Radix sort", (200, 25), (150, 50), win)
+    pancake = Button("Pancake sort", (200, 100), (150, 50), win)
+    
+    
+    
+    #non sort buttons
+    up = Button("-10", (500, 75), (75, 45), win)
+    down = Button("+10", (600, 75), (75, 45), win)
+    
+    up100 = Button("-100", (500, 140), (75, 45), win)
+    down100 = Button("+100", (600, 140), (75, 45), win)
+    
+    generate = Button("New array", (800, 25), (115, 50), win)
+    
+    
+    m.add_button(up100)
+    m.add_button(down100)
+    
+    m.add_button(generate)
+    m.add_button(pancake)
+    m.add_button(radix)
+    m.add_button(insertion)
+    m.add_button(gravity)
+    m.add_button(shell)
+    m.add_button(bubble)
+    m.add_button(quick)
+    m.add_button(selection)
+    m.add_button(up)
+    m.add_button(down)
+    
+    return m
+
+
 class Menu:
     
     def __init__(self, win):

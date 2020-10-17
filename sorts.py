@@ -77,6 +77,8 @@ def bubble(array, win):
 def quick(array, win):
     
     if isSorted(array):
+        for num in array:
+            num.satus = "sorted"
         return array
     
     length = len(array)
