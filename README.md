@@ -3,14 +3,7 @@ Visualization of sorting algorithms
 
 
 
-
-
-
-
-
-
-   colors                Hex                 rgb
-   ######               ######              ######
+# Colors used
 
 Raisin Black            171A21            (23, 26, 33)
 Cadet                   617073            (97, 112, 115)
