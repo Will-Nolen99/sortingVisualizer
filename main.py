@@ -6,21 +6,10 @@ from draw import draw_menu
 
 
 def main():
-    
-    
-    algorithm = {
-        "Selection sort": sorts.selection,
-        "Bubble sort": sorts.bubble,
-        "Quick sort": sorts.quick,
-        "Shell sort": sorts.shell,
-        "Gravity sort": sorts.gravity,
-        "Insertion sort": sorts.insertion,
-        "Radix sort": sorts.radix,
-        "Pancake sort": sorts.pancake
-    }
-    
+
     main_menu = menu.create_menu(window)
     array = make_array(main_menu.elements)
+    algorithm = sorts.get_sorts()
     
     running = True
     while running:
@@ -52,9 +41,6 @@ def main():
         draw_menu(array, window, main_menu)
 
     pg.quit()
-
-
-
 
 
 if __name__ == '__main__':
