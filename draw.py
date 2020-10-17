@@ -19,7 +19,7 @@ def draw_menu(array, win, menu, array2=None):
     
     w, h = pg.display.get_surface().get_size()
     elements = len(array)
-    element_width = w // elements
+    element_width = w / elements
     
     menu.draw_elements()
     
@@ -34,6 +34,8 @@ def draw_menu(array, win, menu, array2=None):
         pg.draw.rect(win, colors.get(num.status),  (i * element_width, h - num.val, element_width, num.val))
         if len(array) <= 500:
             pg.draw.rect(win, (97, 112, 115),  (i * element_width, h - num.val, element_width, num.val), 1)
+    
+    pg.display.update()
             
             
             

@@ -1,6 +1,6 @@
-import time
 import pygame as pg
 from draw import draw_sort
+from element import Element
 
 def selection(array, win):
     
@@ -324,7 +324,6 @@ def radix(array, win):
     while max1 // exp > 0:
         countingSort(array, exp, win)
         exp *= 10
-        time.sleep(.2)
         
     return array
     

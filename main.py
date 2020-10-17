@@ -44,13 +44,9 @@ def main():
         main_menu.update(mouse_x, mouse_y)
         
         #Draw
-        
         draw_menu(array, window, main_menu)
-        pg.display.update()
 
-            
-        
-        
+
     pg.quit()
 
 
