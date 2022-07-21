@@ -1,6 +1,44 @@
 # sortingVisualizer
 Visualization of sorting algorithms
 
+# Dependencies
+Python 3
+Pygame for drawing to the screen - pip install pygame
+noise for creating more visually appealing randomness - pip install noise
+
+# How to run
+navigate to the sortingVisualizer directory.
+
+python main.py
+
+
+# Implemented algorithms
+Each algorithm is implemented in its own class.
+
+Bubble Sort
+
+Gravity Sort
+
+Insertion Sort
+
+Pancake Sort
+
+Quick Sort
+
+Radix Sort
+
+Shell Sort
+
+I chose to implement these algorithms to achieve a mix of functional vs interesting. 
+
+### Notice
+
+Each algorithm is implemented slightlty differently than would be typically seen in a normal program.
+
+Each sort is broken up into distinct steps that lead to the final goal. Each frame of animation a single step is played.
+
+This is why each sort is broken up into a few methods in the implementation.
+
 
 
 # Colors used
